@@ -5,15 +5,18 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class WeatherState {
     private String name;
     private int duration;
+    private long startTime;
 
     WeatherState(String name, int duration) {
         this.name = name;
         this.duration = duration;
+        this.startTime = System.currentTimeMillis() / 1000L;
     }
 
     public void SetWeather(String name, int Duration) {
         this.name = name;
         this.duration = Duration;
+        this.startTime = System.currentTimeMillis() / 1000L;
     }
 
     @JsonProperty("WeatherName")
@@ -23,6 +26,11 @@ public class WeatherState {
 
     @JsonProperty("WeatherDuration")
     public int GetDuration() {
+        return this.duration;
+    }
+
+    @JsonProperty("WeatherStartTime")
+    public int GetStartTime() {
         return this.duration;
     }
 }

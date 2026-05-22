@@ -32,7 +32,8 @@ public class RobloxClient {
 
         String message = mapper.writeValueAsString(Map.of(
                 "WeatherName", weather.GetName(),
-                "WeatherDuration", weather.GetDuration()
+                "WeatherDuration", weather.GetDuration(),
+                "WeatherStartTime", weather.GetStartTime()
         ));
 
         Map<String, Object> body = Map.of(
