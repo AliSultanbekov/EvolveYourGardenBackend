@@ -1,5 +1,7 @@
 package com.evolveyourgarden.weather_service;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class WeatherState {
     private String name;
     private int duration;
@@ -14,10 +16,12 @@ public class WeatherState {
         this.duration = Duration;
     }
 
+    @JsonProperty("WeatherName")
     public String GetName() {
         return this.name;
     }
 
+    @JsonProperty("WeatherDuration")
     public int GetDuration() {
         return this.duration;
     }
