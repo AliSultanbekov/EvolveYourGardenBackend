@@ -29,6 +29,7 @@ public class WeatherService {
             
             if (randomNumber < accum) {
                 selectedWeather = entry.getKey();
+                break;
             }
         }
 
