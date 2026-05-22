@@ -30,7 +30,7 @@ public class WeatherState {
     }
 
     @JsonProperty("WeatherStartTime")
-    public int GetStartTime() {
-        return this.duration;
+    public long GetStartTime() {
+        return this.startTime;
     }
 }
