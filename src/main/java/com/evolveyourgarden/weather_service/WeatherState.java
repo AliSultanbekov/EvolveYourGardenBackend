@@ -19,17 +19,17 @@ public class WeatherState {
         this.startTime = System.currentTimeMillis() / 1000L;
     }
 
-    @JsonProperty("WeatherName")
+    @JsonProperty("Name")
     public String GetName() {
         return this.name;
     }
 
-    @JsonProperty("WeatherDuration")
+    @JsonProperty("Duration")
     public int GetDuration() {
         return this.duration;
     }
 
-    @JsonProperty("WeatherStartTime")
+    @JsonProperty("StartTime")
     public long GetStartTime() {
         return this.startTime;
     }
