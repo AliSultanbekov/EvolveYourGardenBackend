@@ -32,6 +32,7 @@ public class WeatherScheduler {
         weatherService.SelectWeather();
         WeatherState currentWeather = weatherService.GetCurrentWeather();
 
+        robloxClient.PublishWeather(currentWeather);
         System.out.println(currentWeather.GetName());
 
         long delayMs = TimeUnit.SECONDS.toMillis(currentWeather.GetDuration());
