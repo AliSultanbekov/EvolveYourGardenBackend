@@ -8,8 +8,8 @@ public class WeatherConfig {
             "Rainy", 50
     );
     public static final Map<String, int[]> weatherDurations = Map.of(
-            "Rainy", new int[]{300, 600},
-            "None", new int[]{300, 600}
+            "Rainy", new int[]{30, 60},
+            "None", new int[]{30, 60}
     );
 
     public static Map<String, Integer> GetWeatherPool() {
