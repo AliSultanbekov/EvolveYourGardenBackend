@@ -23,12 +23,4 @@ public final class PackStoreConfig {
     public static Map<String, Category> getCategories() {
         return CATEGORIES;
     }
-
-    public static Category getPool(String categoryName) {
-        return CATEGORIES.get(categoryName);
-    }
-
-    public static PackDef getPack(String categoryName, String packName) {
-        return CATEGORIES.get(categoryName).packs().get(packName);
-    }
 }
