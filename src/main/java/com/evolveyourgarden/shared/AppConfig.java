@@ -1,4 +1,4 @@
-package com.evolveyourgarden.weather_service;
+package com.evolveyourgarden.shared;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

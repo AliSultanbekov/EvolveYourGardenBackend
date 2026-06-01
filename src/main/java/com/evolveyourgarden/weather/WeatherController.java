@@ -1,4 +1,4 @@
-package com.evolveyourgarden.weather_service;
+package com.evolveyourgarden.weather;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,7 +12,7 @@ public class WeatherController {
     }
 
     @GetMapping("/weather")
-    public WeatherState GetWeather() {
-        return weatherService.GetCurrentWeather();
+    public WeatherState getWeather() {
+        return weatherService.getCurrentWeather();
     }
 }
