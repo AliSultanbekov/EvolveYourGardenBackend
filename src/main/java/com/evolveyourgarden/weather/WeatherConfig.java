@@ -20,6 +20,10 @@ public final class WeatherConfig {
     }
 
     public static int[] getWeatherDurationRange(String weatherName) {
-        return WEATHER_DURATIONS.get(weatherName);
+        int[] range = WEATHER_DURATIONS.get(weatherName);
+        if (range == null) {
+            throw new IllegalArgumentException("No duration range for weather: " + weatherName);
+        }
+        return range;
     }
 }
