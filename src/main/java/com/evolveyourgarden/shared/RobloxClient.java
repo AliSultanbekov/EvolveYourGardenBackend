@@ -24,8 +24,8 @@ public class RobloxClient {
         publish("Weather", weather);
     }
 
-    public void publishPackStore(SaleState sale) {
-        publish("PackStore", sale);
+    public void publishPackStoreRefreshed(SaleState sale) {
+        publish("PackStoreRefreshed", sale);
     }
 
     private void publish(String topic, Object payload) {

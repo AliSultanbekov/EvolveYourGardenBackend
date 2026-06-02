@@ -38,7 +38,7 @@ public class PackStoreScheduler {
         packStoreService.refreshStore();
         SaleState currentSale = packStoreService.getCurrentSale();
 
-        robloxClient.publishPackStore(currentSale);
+        robloxClient.publishPackStoreRefreshed(currentSale);
         log.info("Pack store rotated: {}", currentSale.saleId());
 
         long delayMs = TimeUnit.SECONDS.toMillis(ROTATION_SECONDS);
