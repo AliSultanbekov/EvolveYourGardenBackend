@@ -35,13 +35,17 @@ public class PackStoreScheduler {
     }
 
     private void scheduleNext() {
-        packStoreService.refreshStore();
-        SaleState currentSale = packStoreService.getCurrentSale();
+        try {
+            packStoreService.refreshStore();
+            SaleState currentSale = packStoreService.getCurrentSale();
 
-        robloxClient.publishPackStoreRefreshed(currentSale);
-        log.info("Pack store rotated: {}", currentSale.saleId());
-
-        long delayMs = TimeUnit.SECONDS.toMillis(ROTATION_SECONDS);
-        taskScheduler.schedule(this::scheduleNext, Instant.now().plusMillis(delayMs));
+            robloxClient.publishPackStoreRefreshed(currentSale);
+            log.info("Pack store rotated: {}", currentSale.saleId());
+        } catch (Exception e) {
+            log.error("Pack store rotation failed", e);
+        } finally {
+            long delayMs = TimeUnit.SECONDS.toMillis(ROTATION_SECONDS);
+            taskScheduler.schedule(this::scheduleNext, Instant.now().plusMillis(delayMs));
+        }
     }
 }

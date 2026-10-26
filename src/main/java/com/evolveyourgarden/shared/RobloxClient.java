@@ -3,10 +3,12 @@ package com.evolveyourgarden.shared;
 import com.evolveyourgarden.packstore.SaleState;
 import com.evolveyourgarden.weather.WeatherState;
 import org.springframework.http.MediaType;
+import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
 import tools.jackson.databind.ObjectMapper;
 
+import java.time.Duration;
 import java.util.Map;
 
 @Component
@@ -17,7 +19,14 @@ public class RobloxClient {
 
     public RobloxClient(RobloxProperties properties) {
         this.properties = properties;
-        this.restClient = RestClient.create();
+
+        SimpleClientHttpRequestFactory factory = new SimpleClientHttpRequestFactory();
+        factory.setConnectTimeout(Duration.ofSeconds(5));
+        factory.setReadTimeout(Duration.ofSeconds(10));
+
+        this.restClient = RestClient.builder()
+                .requestFactory(factory)
+                .build();
     }
 
     public void publishWeather(WeatherState weather) {
@@ -34,7 +43,6 @@ public class RobloxClient {
                 properties.universeId()
         );
 
-        // The payload's @JsonProperty annotations produce the correct JSON keys.
         String message = mapper.writeValueAsString(payload);
 
         Map<String, Object> body = Map.of(

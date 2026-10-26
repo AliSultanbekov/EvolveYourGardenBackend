@@ -37,10 +37,14 @@ public class WeatherScheduler {
         weatherService.selectWeather();
         WeatherState currentWeather = weatherService.getCurrentWeather();
 
-        robloxClient.publishWeather(currentWeather);
-        log.info("Weather set to {} for {}s", currentWeather.name(), currentWeather.duration());
-
-        long delayMs = TimeUnit.SECONDS.toMillis(currentWeather.duration());
-        taskScheduler.schedule(this::scheduleNext, Instant.now().plusMillis(delayMs));
+        try {
+            robloxClient.publishWeather(currentWeather);
+            log.info("Weather set to {} for {}s", currentWeather.name(), currentWeather.duration());
+        } catch (Exception e) {
+            log.error("Weather failed", e);
+        } finally {
+            long delayMs = TimeUnit.SECONDS.toMillis(currentWeather.duration());
+            taskScheduler.schedule(this::scheduleNext, Instant.now().plusMillis(delayMs));
+        }
     }
 }
